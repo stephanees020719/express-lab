@@ -5,8 +5,7 @@ const express = require('express');
 const app = express();
 
 // Define a "root" route directly on app
-// Tomorrow, we'll use best practice routing
-// Mount routes
+
 app.get('/', function(req, res) {
     res.send('<h1 style="color: navy; font-family: Avenir;">Express is Working!</h1>');
   });
@@ -20,10 +19,18 @@ app.get('/', function(req, res) {
 app.get('/greetings/:name', function(req, res) {
     res.send('<Name>Hello, Jimmy Boy! It is so great to see you.</Name>');
 });
-// style="color: salmon; font-family: Avenir;"
+
+
+//tip
+app.get('/tip/:total/:tipPercentage', function(req, res) {
+    const total = parseFloat(req.params.total);
+    const tipPercentage = parseFloat(req.params.tipPercentage);
+    const tipAmount = (total * tipPercentage) / 100;
+    res.send(`Your tip amount is: ${tipAmount}`);
+});
 
 // Tell the app to listen on port 3000
-// for HTTP requests from clients
+
 app.listen(3000, function () {
   console.log('Listening on port 3000');
 });
